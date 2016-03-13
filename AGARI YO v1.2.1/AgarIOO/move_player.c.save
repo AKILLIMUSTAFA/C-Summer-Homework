@@ -1,0 +1,33 @@
+#include "agar.h"
+#include "xbox.h"
+
+void move_player(double *player_location_x,double *player_location_y , double radius_player, double choose_control,double player_speed)
+{
+
+    if(choose_control==1)
+    {
+        if (key[KEY_LEFT] && (*player_location_x)>(radius_player)) (*player_location_x)=((*player_location_x)-player_speed);
+        if (key[KEY_RIGHT] && (*player_location_x)<(MAP_W-(radius_player))) (*player_location_x)=((*player_location_x)+player_speed);
+        if (key[KEY_UP] && (*player_location_y)>(radius_player)) (*player_location_y)=((*player_location_y)-player_speed);
+        if (key[KEY_DOWN] && (*player_location_y)<((MAP_H-radius_player))) (*player_location_y)=((*player_location_y)+player_speed);
+    }
+
+    if(choose_control==2)
+    {
+        if (mouse_x<*player_location_x && (*player_location_x)>(radius_player)) (*player_location_x)=((*player_location_x)-player_speed);
+        if (mouse_x>*player_location_x && (*player_location_x)<(MAP_W-radius_player)) (*player_location_x)=((*player_location_x)+player_speed);
+        if (mouse_y<*player_location_y && (*player_location_y)>(radius_player)) (*player_location_y)=((*player_location_y)-player_speed);
+        if (mouse_y>*player_location_y && (*player_location_y)<(MAP_H-radius_player)) (*player_location_x)=((*player_location_x)-player_speed);
+    }
+
+    if(choose_control==3)
+    {
+        xbox_input();
+
+        if (xbox[LSTICK_LEFT] && (*player_location_x)>(radius_player)) --(*player_location_x);
+        if (xbox[LSTICK_RIGHT] && (*player_location_x)<(MAP_W-(radius_player))) ++(*player_location_x);
+        if (xbox[LSTICK_UP] && (*player_location_y)>(radius_player)) --(*player_location_y);
+        if (xbox[LSTICK_DOWN] && (*player_location_y)<((MAP_H-radius_player))) ++(*player_location_y);
+    }
+
+}

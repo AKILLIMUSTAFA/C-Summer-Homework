@@ -1,0 +1,143 @@
+#include "agar.h"
+
+void game(double still_run,BITMAP *bmp,BITMAP *arka_fon)
+{
+    FONT *font1 = load_font ("font1.pcx", NULL, NULL);
+
+    SAMPLE *start_game = load_sample("start_game.wav");
+
+    int hak=3;
+    double check_first_time_yem=1;
+    double check_first_time_bot=1;
+
+    double radius_player=RADIUS_PLAYER;
+    double radius_bot=RADIUS_BOT;
+    double radius_yem=RADIUS_YEM;
+    double split_radius_player=0;
+
+    double player_location_x=SCREEN_WW/2;
+    double player_location_y=SCREEN_HH/2;
+
+    double bot_location_x[SIZE_ARRAY];
+    double bot_location_y[SIZE_ARRAY];
+
+    double yem_location_x[SIZE_ARRAY];
+    double yem_location_y[SIZE_ARRAY];
+
+    double target_bot_location_x[SIZE_ARRAY];
+    double target_bot_location_y[SIZE_ARRAY];
+    double distance_target_location_x[SIZE_ARRAY];
+    double distance_target_location_y[SIZE_ARRAY];
+
+    double not_first_time=0;
+
+    int sayac=0;
+
+    double choose_control;
+
+    double player_speed=FIRST_MOV_SPEED;
+    double bot_speed=FIRST_MOV_SPEED;
+
+    int split_sayac=0;
+
+    double split_player_location_x;
+    double split_player_location_y;
+    double split_player_speed;
+
+    int camera_x=0;
+    int camera_y=0;
+
+    while(sayac<BOT_NUMBER)
+    {
+        target_bot_location_x[sayac]=0;
+        target_bot_location_y[sayac]=0.0;
+        distance_target_location_x[sayac]=0.0;
+        distance_target_location_y[sayac]=0.0;
+        ++sayac;
+    }
+
+    if(still_run)
+    {
+        play_sample(start_game,255,128,1000,0);
+    }
+
+
+    while(!key[KEY_ESC] && still_run==1)
+    {
+
+        set_mouse_range(0,0,(player_location_x*2)-1, (player_location_y*2)-1);
+
+        if(check_first_time_yem)
+        {
+            random_yem_location(yem_location_x,yem_location_y);
+            check_first_time_yem=0;
+        }
+
+        eat_yem(bmp,radius_yem,yem_location_x,yem_location_y,player_location_x, player_location_y, &radius_player, &player_speed);
+
+        textout_ex(bmp, font1, "AgorIOO v1.0.6-beta", 1000, 20, makecol(0, 0, 50), -1);
+        textprintf_ex(bmp, font1, 1000, 52, makecol(255, 100, 200),-1, "Kalan Hakkiniz: %d", hak);
+
+        if(check_first_time_bot)
+        {
+            random_bot_location(bot_location_x, bot_location_y,-1);
+            check_first_time_bot=0;
+        }
+
+        eat_bot(bmp,&radius_bot, bot_location_x, bot_location_y, player_location_x, player_location_y, &radius_player, &player_speed);
+
+        circlefill(bmp, player_location_x, player_location_y, radius_player, makecol(255, 0, 0));
+
+        show_mouse(bmp);
+
+        sayac=0;
+
+        while(sayac<BOT_NUMBER)
+        {
+
+            if(not_first_time)
+            {
+                if(distance_target_location_x[sayac]<10 && distance_target_location_y[sayac]<10 &&
+                   distance_target_location_x[sayac]>(-10) && distance_target_location_y[sayac]>(-10))
+                {
+                    random_bot_location(target_bot_location_x, target_bot_location_y,sayac);
+                    textprintf_ex(bmp, font1, 1000, 150, makecol(255, 100, 200),-1, "Distance x 0: %f", distance_target_location_x[0]);
+                    textprintf_ex(bmp, font1, 1000, 200, makecol(255, 100, 200),-1, "Distance y 0: %f", distance_target_location_y[0]);
+                    textprintf_ex(bmp, font1, 1000, 250, makecol(255, 100, 200),-1, "Distance x 1: %f", distance_target_location_x[1]);
+                    textprintf_ex(bmp, font1, 1000, 300, makecol(255, 100, 200),-1, "Distance y 1: %f", distance_target_location_x[1]);
+                }
+            }
+            else
+            {
+                if(sayac==BOT_NUMBER-1)
+                {
+                    not_first_time=1;
+                    random_bot_location(target_bot_location_x, target_bot_location_y,-1);
+
+                    textprintf_ex(bmp, font1, 1000, 150, makecol(255, 100, 200),-1, "Distance x 0: %f", distance_target_location_x[0]);
+                    textprintf_ex(bmp, font1, 1000, 200, makecol(255, 100, 200),-1, "Distance y 0: %f", distance_target_location_y[0]);
+                    textprintf_ex(bmp, font1, 1000, 250, makecol(255, 100, 200),-1, "Distance x 1: %f", distance_target_location_x[1]);
+                    textprintf_ex(bmp, font1, 1000, 300, makecol(255, 100, 200),-1, "Distance y 1: %f", distance_target_location_x[1]);
+                }
+            }
+
+            ++sayac;
+        }
+
+        move_bot(bmp,&player_location_x, &player_location_y , &radius_player, bot_location_x, bot_location_y , radius_bot,
+                 target_bot_location_x, target_bot_location_y, distance_target_location_x, distance_target_location_y, choose_control,
+                 bot_speed, player_speed, &split_sayac, &split_radius_player,
+                 &split_player_location_x, &split_player_location_y, &split_player_speed);
+
+
+        camera (player_location_x,player_location_y, &camera_x, &camera_y);
+        blit(bmp,screen,camera_x,camera_y,0,0,MAP_W,MAP_H);
+        clear_bitmap(bmp);
+        blit(arka_fon,bmp,0,0,0,0,MAP_W,MAP_H);
+
+    }
+
+    show_mouse(NULL);
+
+
+}

@@ -1,0 +1,11 @@
+#include "agar.h"
+
+
+void player_split(int *split_sayac)
+{
+    ++(*split_sayac);
+    if((*split_sayac)==MERGER_AGAIN)
+    {
+        (*split_sayac)=0;
+    }
+}

@@ -1,0 +1,154 @@
+# depslib dependency file v1.0
+1442527333 source:c:\users\mustafa1453\desktop\agarioo\main.c
+	<allegro.h>
+	"agar.h"
+	"xbox.h"
+
+1442522573 c:\users\mustafa1453\desktop\agarioo\xbox.h
+	<allegro.h>
+
+1437218836 source:c:\users\mustafa1453\desktop\agarioo\xbox.c
+	"xbox.h"
+
+1442521195 c:\users\mustafa1453\desktop\agarioo\agar.h
+	<allegro.h>
+
+1442511755 source:c:\users\mustafa1453\desktop\agarioo\baslat.c
+	"agar.h"
+
+1442511797 source:c:\users\mustafa1453\desktop\agarioo\bitir.c
+	"agar.h"
+
+1442522508 source:c:\users\mustafa1453\desktop\agarioo\screen_first.c
+	"agar.h"
+
+1442523081 source:c:\users\mustafa1453\desktop\agarioo\game.c
+	"agar.h"
+
+1442522329 source:c:\users\mustafa1453\desktop\agarioo\random_yem_location.c
+	"agar.h"
+
+1442521298 source:c:\users\mustafa1453\desktop\agarioo\eat_yem.c
+	"agar.h"
+
+1442521680 source:c:\users\mustafa1453\desktop\agarioo\move_player.c
+	"agar.h"
+	"xbox.h"
+
+1442522150 source:c:\users\mustafa1453\desktop\agarioo\random_bot_location.c
+	"agar.h"
+
+1442521195 source:c:\users\mustafa1453\desktop\agarioo\eat_bot.c
+	"agar.h"
+
+1442480048 source:c:\users\mustafa1453\desktop\agarioo\move_bot.c
+	"agar.h"
+
+1442521981 source:c:\users\mustafa1453\desktop\agarioo\player_control.c
+	"agar.h"
+
+1441669750 source:c:\users\mustafa1453\desktop\agarioo\player_split.c
+	"agar.h"
+
+1441732642 source:c:\users\mustafa1453\desktop\agarioo\camera.c
+	"agar.h"
+
+1442522205 source:c:\users\mustafa1453\desktop\agarioo\random_color_bot.c
+	"agar.h"
+
+1442479218 source:c:\users\mustafa1453\desktop\agarioo\speed_update.c
+	"agar.h"
+
+1442180082 source:c:\users\mustafa1453\desktop\agarioo\split.c
+	"agar.h"
+
+1441669750 source:c:\users\mustafa1453\desktop\agarioo\split_move.c
+	"agar.h"
+
+1441719816 source:c:\users\mustafa1453\desktop\agarioo\deneme.c
+	"agar.h"
+
+1442522181 source:c:\users\mustafa1453\desktop\agarioo\random_bot_target_location.c
+	"agar.h"
+
+1442512761 source:c:\users\mustafa1453\desktop\agarioo\camera_move.c
+	"agar.h"
+
+1442512557 source:c:\users\mustafa1453\desktop\agarioo\blue_mouse_icon .c
+	"agar.h"
+
+1442318980 source:c:\users\mustafa1453\desktop\agarioo\division.c
+	"agar.h"
+	"xbox.h"
+
+1441830141 source:c:\users\mustafa1453\desktop\agarioo\split_merger_again.c
+	"agar.h"
+
+1442025405 source:c:\users\mustafa1453\desktop\agarioo\split_move_way.c
+	"agar.h"
+
+1442521796 source:c:\users\mustafa1453\desktop\agarioo\move_splits.c
+	"agar.h"
+	"xbox.h"
+
+1442081168 source:c:\users\mustafa1453\desktop\agarioo\draw_circles.c
+	"agar.h"
+
+1442085054 source:c:\users\mustafa1453\desktop\agarioo\choose_thema.c
+	"agar.h"
+
+1442513295 source:c:\users\mustafa1453\desktop\agarioo\choose_themas.c
+	"agar.h"
+
+1442514147 source:c:\users\mustafa1453\desktop\agarioo\circles_draw.c
+	"agar.h"
+
+1442233749 source:c:\users\mustafa1453\desktop\agarioo\split_player.c
+	"agar.h"
+
+1442234834 source:c:\users\mustafa1453\desktop\agarioo\split_split.c
+	"agar.h"
+
+1442521276 source:c:\users\mustafa1453\desktop\agarioo\eat_split.c
+	"agar.h"
+
+1442250469 source:c:\users\mustafa1453\desktop\agarioo\green_things.c
+	"agar.h"
+
+1442522289 source:c:\users\mustafa1453\desktop\agarioo\random_green_things_location.c
+	"agar.h"
+
+1442516539 source:c:\users\mustafa1453\desktop\agarioo\division_green_things.c
+	"agar.h"
+
+1442266491 source:c:\users\mustafa1453\desktop\agarioo\split_green_thing.c
+	"agar.h"
+
+1442517350 source:c:\users\mustafa1453\desktop\agarioo\division_space_split.c
+	"agar.h"
+
+1442517350 source:c:\users\mustafa1453\desktop\agarioo\division_space_player.c
+	"agar.h"
+
+1442517205 source:c:\users\mustafa1453\desktop\agarioo\division_space_move_way.c
+	"agar.h"
+
+1442517032 source:c:\users\mustafa1453\desktop\agarioo\division_space_merger_again.c
+	"agar.h"
+
+1442478989 source:c:\users\mustafa1453\desktop\agarioo\division_space.c
+	"agar.h"
+	"xbox.h"
+
+1442516539 source:c:\users\mustafa1453\desktop\agarioo\division_green_things_player.c
+	"agar.h"
+
+1442516539 source:c:\users\mustafa1453\desktop\agarioo\division_green_things_split.c
+	"agar.h"
+
+1442521242 source:c:\users\mustafa1453\desktop\agarioo\eat_player.c
+	"agar.h"
+
+1442401608 source:c:\users\mustafa1453\desktop\agarioo\bot_strategies.c
+	"agar.h"
+

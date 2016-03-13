@@ -1,0 +1,195 @@
+#include "agar.h"
+
+void move_bot(BITMAP *bmp,double *player_location_x,double *player_location_y , double *radius_player,
+              double bot_location_x[SIZE_ARRAY], double bot_location_y[SIZE_ARRAY] , double radius_bot,
+              double target_bot_location_x[SIZE_ARRAY], double target_bot_location_y[SIZE_ARRAY],
+              double distance_target_location_x[SIZE_ARRAY], double distance_target_location_y[SIZE_ARRAY],
+              double choose_control, double bot_speed, double player_speed, int *split_sayac, double *split_radius_player,
+              double *split_player_location_x, double *split_player_location_y, double *split_player_speed)
+{
+
+        /*if (key[KEY_A] && bot_location_x[1]>radius_bot) --bot_location_x[1];
+        if (key[KEY_D] && bot_location_x[1]<(1280-radius_bot)) ++bot_location_x[1];
+        if (key[KEY_W] && bot_location_y[1]>radius_bot) --bot_location_y[1];
+        if (key[KEY_S] && bot_location_y[1]<(1024-radius_bot)) ++bot_location_y[1];*/
+
+        double timer=5;
+        int number_bot=BOT_NUMBER-1;
+        double check=BOT_NUMBER-1;
+        double first_split_x;
+        double first_split_y;
+
+        double mx;
+        double my;
+        double px;
+        double py;
+
+
+
+        if(key[KEY_SPACE])
+        {
+            mx=mouse_x;
+            my=mouse_y;
+
+            (*split_sayac)=1;
+            if(*split_radius_player!=*radius_player)
+            {
+                if(*radius_player>10)
+                {
+                    (*radius_player)=((*radius_player)/2);
+                    (*split_radius_player)=*radius_player;
+
+                    *split_player_location_x=(*player_location_x);
+                    *split_player_location_y=(*player_location_y);
+
+                    px=*split_player_location_x;
+                    py=*split_player_location_y;
+
+                    *split_player_speed=player_speed;
+
+                    if((mx-(*split_player_location_x))>=0)
+                    {
+                        if((my-(*split_player_location_y))>=0)
+                        {
+                            //first_split_x=(*split_player_location_x)+(6*(*split_radius_player));
+                            //first_split_y=(*split_player_location_y)+(6*(*split_radius_player));
+
+                            first_split_x=((-(2*(pow(my-py,2)/(mx-px))))+
+                                            ((pow(2*(pow(my-py,2)/(mx-px)),2)))+(1-(pow(my-py,2)/(mx-px)))*(4)*((pow(my-py,2))+((*split_radius_player)*6)))/
+                                            ((1-(pow(my-py,2)/(mx-px)))*2);
+
+                            first_split_y=pow((((*split_radius_player)*6)-(pow(first_split_x,2))),1/2);
+
+
+                            while(first_split_x>(*split_player_location_x))
+                            {
+                                // koselere ator mosue_ mouse.-_y ye gore atacak
+                                //gozukmuyor bolunme o gozukecek
+                                (*split_player_location_x)=(*split_player_location_x)+((first_split_x-(mouse_x-(*player_location_x)))/10000);
+                                (*split_player_location_y)=(*split_player_location_y)+((first_split_y-(mouse_y-(*player_location_y)))/10000);
+                                circlefill(bmp, *split_player_location_x, *split_player_location_y, *split_radius_player, makecol(255, 0, 0));
+                            }
+                        }
+
+                        else
+                        {
+                            first_split_x=(*split_player_location_x)+(3*(*split_radius_player));
+                            first_split_y=(*split_player_location_y)-(3*(*split_radius_player));
+                            while(first_split_x>(*split_player_location_x))
+                            {
+                                ++(*split_player_location_x);
+                                --(*split_player_location_y);
+                                circlefill(bmp, *split_player_location_x, *split_player_location_y, *split_radius_player, makecol(255, 0, 0));
+                            }
+
+                        }
+                    }
+
+                    else
+                    {
+                        if((mouse_y-(*split_player_location_y))>=0)
+                        {
+                            first_split_x=(*split_player_location_x)-(3*(*split_radius_player));
+                            first_split_y=(*split_player_location_y)+(3*(*split_radius_player));
+                            while(first_split_y>(*split_player_location_y))
+                            {
+                                --(*split_player_location_x);
+                                ++(*split_player_location_y);
+                                circlefill(bmp, *split_player_location_x, *split_player_location_y, *split_radius_player, makecol(255, 0, 0));
+                            }
+
+                        }
+
+                        else
+                        {
+                            first_split_x=(*split_player_location_x)-(3*(*split_radius_player));
+                            first_split_y=(*split_player_location_y)-(3*(*split_radius_player));
+                            while((*split_player_location_x)>first_split_x)
+                            {
+                                --(*split_player_location_x);
+                                --(*split_player_location_y);
+                                circlefill(bmp, *split_player_location_x, *split_player_location_y, *split_radius_player, makecol(255, 0, 0));
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+
+        if((*split_sayac))
+        {
+            textprintf_ex(bmp, font, 100, 900, makecol(255, 100, 200),-1, "split_player_location_x: %d", *split_player_location_x);
+            textprintf_ex(bmp, font, 100, 1000, makecol(255, 100, 200),-1, "split_player_location_y: %d", *split_player_location_y);
+
+            circlefill(bmp, *split_player_location_x, *split_player_location_y, *split_radius_player, makecol(255, 0, 0));
+            move_player(split_player_location_x, split_player_location_y,(*split_radius_player),choose_control,*split_player_speed);
+        }
+
+        move_player(player_location_x,player_location_y,*radius_player,choose_control,player_speed);
+
+        if(*radius_player>radius_bot)
+        {
+            while(timer>0)
+            {
+                if(check>-1)
+                {
+                    distance_target_location_x[number_bot]=(target_bot_location_x[number_bot]-bot_location_x[number_bot]);
+                    distance_target_location_y[number_bot]=(target_bot_location_y[number_bot]-bot_location_y[number_bot]);
+                    --check;
+                }
+
+               /* if(bot_location_x[number_bot]>radius_bot)
+                {
+                    --bot_location_x[number_bot];
+                }
+
+                if(bot_location_y[number_bot]>radius_bot)
+                {
+                    --bot_location_y[number_bot];
+                }
+
+                --timer;*/
+
+
+
+                if(distance_target_location_x[number_bot]>0)
+                {
+
+                    (bot_location_x[number_bot])=((bot_location_x[number_bot])+bot_speed);
+                }
+                else
+                {
+                    (bot_location_x[number_bot])=((bot_location_x[number_bot])-bot_speed);
+                }
+
+                if(distance_target_location_y[number_bot]>0)
+                {
+                    (bot_location_y[number_bot])=((bot_location_y[number_bot])+bot_speed);
+                }
+                else
+                {
+                    (bot_location_y[number_bot])=((bot_location_y[number_bot])-bot_speed);
+                }
+
+                if(number_bot>(-1))
+                {
+                    --number_bot;
+                }
+                else
+                {
+                    number_bot=BOT_NUMBER-1;
+                }
+
+                --timer;
+            }
+        }
+
+        else
+        {
+
+
+        }
+
+
+}

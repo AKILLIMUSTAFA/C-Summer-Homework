@@ -1,0 +1,8 @@
+#include "agar.h"
+
+
+void Bitir() {
+clear_keybuf();
+allegro_exit();
+
+}

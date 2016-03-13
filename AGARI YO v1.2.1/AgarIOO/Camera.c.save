@@ -1,0 +1,16 @@
+#include "agar.h"
+
+void camera (int player_location_x, int player_location_y, int *camera_x, int *camera_y)
+{
+    *camera_x=player_location_x-(SCREEN_WW/2);
+    *camera_y=player_location_y-(SCREEN_HH/2);
+
+    if(*camera_x<0)
+        *camera_x=0;
+
+    if(*camera_y<0)
+        *camera_y=0;
+
+
+
+}

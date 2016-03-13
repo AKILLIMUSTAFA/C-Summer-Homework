@@ -1,0 +1,29 @@
+#include "agar.h"
+
+void eat_yem(BITMAP *bmp, double radius_yem,double yem_location_x[SIZE_ARRAY], double yem_location_y[SIZE_ARRAY],
+             double player_location_x, double player_location_y, double *radius_player, double *player_speed)
+{
+    int sayac=YEM_NUMBER-1;
+
+    while(sayac>-1)
+    {
+        circlefill(bmp, yem_location_x[sayac], yem_location_y[sayac], radius_yem, makecol(0, 255, 0));
+        --sayac;
+    }
+
+    sayac=YEM_NUMBER-1;
+
+    while(sayac>-1)
+    {
+
+        if (yem_location_x[sayac]>(player_location_x-(*radius_player)) && yem_location_x[sayac]<(player_location_x+(*radius_player)) &&
+            yem_location_y[sayac]>(player_location_y-(*radius_player)) && yem_location_y[sayac]<(player_location_y+(*radius_player)))
+        {
+            (*radius_player)+=radius_yem/GROWTH_RATE);
+            yem_location_x[sayac]=rand()%MAP_W;
+            yem_location_y[sayac]=rand()%MAP_H;
+        }
+
+        --sayac;
+    }
+}

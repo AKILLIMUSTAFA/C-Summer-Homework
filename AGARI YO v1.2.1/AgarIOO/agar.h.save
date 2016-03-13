@@ -1,0 +1,56 @@
+#ifndef AGAR_H_INCLUDED
+#define AGAR_H_INCLUDED
+
+#include <allegro.h>
+
+
+#define SIZE_ARRAY 100
+
+#define SCREEN_W 1280
+#define SCREEN_H 1024
+
+#define MAP_W 2560
+#define MAP_H 2048
+
+#define YEM_NUMBER 10 //this number can't be bigger than SIZE_ARRAY
+#define BOT_NUMBER 2  //this number can't be bigger than SIZE_ARRAY
+
+#define RADIUS_PLAYER 40
+#define RADIUS_BOT 40
+#define RADIUS_YEM 10
+
+#define GROWTH_RATE 5
+
+#define MERGER_AGAIN 6000 // Yaklasýk 30 saniye.
+
+#define FIRST_MOV_SPEED 1
+
+
+void Baslat();
+void Bitir();
+double screen_first(double first_screen,BITMAP *bmp,BITMAP *arka_fon);
+void game(double still_run,BITMAP *bmp,BITMAP *arka_fon);
+void random_yem_location(double yem_location_x[SIZE_ARRAY] , double yem_location_y[SIZE_ARRAY]);
+void eat_yem(BITMAP *bmp, double radius_yem,double yem_location_x[SIZE_ARRAY], double yem_location_y[SIZE_ARRAY],
+             double player_location_x, double player_location_y, double *radius_player, double *player_speed);
+void move_player(double *player_location_x,double *player_location_y , double radius_player,double choose_control,double player_speed);
+void random_bot_location(double(bot_location_x[SIZE_ARRAY]), double(bot_location_y[SIZE_ARRAY]),int target);
+void eat_bot(BITMAP *bmp, double *radius_bot,double bot_location_x[SIZE_ARRAY], double bot_location_y[SIZE_ARRAY],
+             double player_location_x, double player_location_y, double *radius_player, double *player_speed);
+
+void move_bot(BITMAP *bmp,double *player_location_x,double *player_location_y , double *radius_player,
+              double bot_location_x[SIZE_ARRAY], double bot_location_y[SIZE_ARRAY] , double radius_bot,
+              double target_bot_location_x[SIZE_ARRAY], double target_bot_location_y[SIZE_ARRAY],
+              double distance_target_location_x[SIZE_ARRAY], double distance_target_location_y[SIZE_ARRAY],
+              double choose_control, double bot_speed, double player_speed, int *split_sayac, double *split_radius_player,
+              double *split_player_location_x, double *split_player_location_y, double *split_player_speed);
+
+double player_control(BITMAP *bmp,BITMAP *arka_fon, double still_run);
+
+void player_split(int *split_sayac);
+
+void increment_speed_counter();
+
+
+#endif // AGAR_H_INCLUDED
+

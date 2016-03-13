@@ -1,0 +1,45 @@
+#include <allegro.h>
+
+#include "agar.h"
+#include "xbox.h"
+
+volatile long speed_counter = 0;
+
+void increment_speed_counter(){
+speed_counter++;
+}END_OF_FUNCTION(increment_speed_counter);
+
+int main()
+{
+    Baslat();
+
+    double first_screen=1;
+    double still_run;
+    
+
+    LOCK_VARIABLE(speed_counter);
+    LOCK_FUNCTION(increment_speed_counter);
+    install_int_ex(increment_speed_counter,BPS_TO_TIMER(60));
+
+    BITMAP *bmp_first_screen = create_bitmap(SCREEN_WW,SCREEN_HH);
+    BITMAP *bmp = create_bitmap(MAP_W,MAP_H);
+    BITMAP *arka_fon = load_bitmap("fonn.bmp",NULL);
+
+    int depth;
+    depth=desktop_color_depth();
+    set_color_depth(depth);
+
+    still_run=screen_first(first_screen,bmp_first_screen,arka_fon);
+    
+    choose_control=player_control(bmp_first_screen,arka_fon,still_run);
+
+    game(still_run,bmp,arka_fon);
+
+    destroy_bitmap (bmp);
+    destroy_bitmap (arka_fon);
+
+    Bitir();
+    return 0;
+}
+END_OF_MAIN()
+

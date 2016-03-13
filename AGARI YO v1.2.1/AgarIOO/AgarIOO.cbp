@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="AgarIOO" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/AgarIOO" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/AgarIOO" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="agar.h" />
+		<Unit filename="baslat.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="bitir.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="blue_mouse_icon .c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="camera_move.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="choose_themas.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="circles_draw.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="division_green_things.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="division_green_things_player.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="division_green_things_split.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="division_space.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="division_space_merger_again.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="division_space_move_way.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="division_space_player.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="division_space_split.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="eat_bot.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="eat_player.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="eat_split.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="eat_yem.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="game.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="move_bot.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="move_player.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="move_splits.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="player_control.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="random_bot_location.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="random_bot_target_location.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="random_color_bot.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="random_green_things_location.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="random_yem_location.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="screen_first.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="speed_update.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="xbox.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="xbox.h" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

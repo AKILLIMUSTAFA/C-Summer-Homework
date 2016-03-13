@@ -1,0 +1,69 @@
+#include "agar.h"
+
+double player_control(BITMAP *bmp,BITMAP *arka_fon,double still_run)
+{
+    BITMAP *keyboard = load_bitmap("keyboard.bmp",NULL);
+    BITMAP *mouse = load_bitmap("mouse.bmp",NULL);
+    BITMAP *gamepad = load_bitmap("gamepad.bmp",NULL);
+    SAMPLE *control_sound = load_sample("control_sound.wav");
+
+    double choose_control=0;
+    double check=1;
+
+    double keyboard_botton_x=(SCREEN_WW/3);
+    double keyboard_botton_y=(SCREEN_HH/4);
+    double mouse_botton_x=(SCREEN_WW/3);
+    double mouse_botton_y=(SCREEN_HH/4)+mouse->h+20;
+    double gamepad_botton_x=(SCREEN_WW/3);
+    double gamepad_botton_y=(SCREEN_HH/4)+mouse->h+gamepad->h+40;
+
+    if(still_run)
+    {
+         play_sample(control_sound,255,128,1000,0);
+
+        while(check)
+        {
+            blit(keyboard,bmp,0,0,keyboard_botton_x,keyboard_botton_y,keyboard->w,keyboard->h);
+            blit(mouse,bmp,0,0,mouse_botton_x,mouse_botton_y,mouse->w,mouse->h);
+            blit(gamepad,bmp,0,0,gamepad_botton_x,gamepad_botton_y,gamepad->w,gamepad->h);
+
+            show_mouse(bmp);
+
+            if(mouse_x>keyboard_botton_x && mouse_x<(keyboard_botton_x+keyboard->w) &&
+                mouse_y>keyboard_botton_y && mouse_y<(keyboard_botton_y+keyboard->h) &&
+                (mouse_b & 1))
+            {
+                choose_control=1;
+                check=0;
+            }
+
+            if(mouse_x>mouse_botton_x && mouse_x<(mouse_botton_x+mouse->w) &&
+                mouse_y>mouse_botton_y && mouse_y<(mouse_botton_y+mouse->h)+20 &&
+                (mouse_b & 1))
+            {
+                choose_control=2;
+                check=0;
+            }
+
+            if(mouse_x>gamepad_botton_x && mouse_x<(gamepad_botton_x+gamepad->w) &&
+                mouse_y>gamepad_botton_y && mouse_y<(gamepad_botton_y+gamepad->h) &&
+                (mouse_b & 1))
+            {
+                choose_control=3;
+                check=0;
+            }
+
+            blit(bmp,screen,0,0,0,0,MAP_W,MAP_H);
+            clear_bitmap(bmp);
+            blit(arka_fon,bmp,0,0,0,0,MAP_W,MAP_H);
+        }
+        show_mouse(NULL);
+        destroy_sample (control_sound);
+        destroy_bitmap (keyboard);
+        destroy_bitmap (mouse);
+        destroy_bitmap (gamepad);
+    }
+
+    return choose_control;
+
+}
